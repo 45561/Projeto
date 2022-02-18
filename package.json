@@ -1,0 +1,22 @@
+{
+  "name": "projeto1-2",
+  "version": "1.0.0",
+  "description": "Estrutura de dados, uso do mongodb",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "banco",
+    "de",
+    "dados"
+  ],
+  "author": "Stéfany Fagundes Barcellos",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "mongoose": "^6.2.0",
+    "nodemon": "^2.0.15"
+  }
+}
