@@ -22,7 +22,7 @@ app.post("/add", function (req, res) {
     if (err) {
       res.send(" Aconteceu o erro: " + err);
     } else {
-      res.send(docs.nome + " foi salvo com sucesso! ");
+      res.redirect("/");
     }
   });
 });
