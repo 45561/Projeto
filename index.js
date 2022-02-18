@@ -20,7 +20,7 @@ app.post("/add", function (req, res) {
 
   usuario.save(function (err, docs) {
     if (err) {
-      res.send(" Aconteceu o seguinte erro: " + err);
+      res.send(" Aconteceu o erro: " + err);
     } else {
       res.send(docs.nome + " foi salvo com sucesso! ");
     }
