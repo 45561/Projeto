@@ -1,24 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LISTANDO DADOS</title>
-</head>
-<body>
+<%-include ('cabecalho.ejs');%>
 
-    <h1>LISTAGEM DE USUARIOS</h1>
-    <p><a href="/add">Adicionar</a></p>
-
+<form method="post">
+    <input type="text" class="pesquisa" name="pesquisa">
+    <select name="tipo"> 
+        <option value="nome">Nome</option>
+        <option value="email">Email</option>
+    </select>
+    <input type="submit" class="btn_pesquisa" value="pesquisar">
+</form>
     <table>
+        
         <tr>
             <th>ID</th>
             <th>NOME</th>
             <th>EMAIL</th>
             <th>SENHA</th>
             <th>FOTO</th>
+            <th>EDITAR</th>
             <th>DELETAR</th>
+          
         </tr>
         <% Usuarios.forEach(function(usuario){ %>
         <tr>
@@ -27,9 +27,15 @@
             <td><%=usuario.email%></td> 
             <td><%=usuario.senha%></td>
             <td><%=usuario.foto%></td>
-            <td><a href="/del/<%=usuario._id%>">DELETAR</a></td>
+            <td><a href="/edt/<%=usuario._id%>">
+                <img src="/imagens/lapis.png">
+            </a></td>
+            <td><a href="/del/<%=usuario._id%>">
+                <img src="/imagens/lixeira.png">
+            </a></td>
         </tr>
         <% }) %>
     </table>
 </body>
 </html> 
+<%-include ('rodape.ejs');%>

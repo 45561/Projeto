@@ -1,6 +1,9 @@
 var express = require("express");
 var app = express();
 var Usuario = require("./model/Usuario");
+var path = require("path"); //acessa as pastas do servidor dentro da pasta principal
+
+app.use(express.static(path.join(__dirname, "public")));
 
 app.set("view engine", "ejs");
 
@@ -35,10 +38,52 @@ app.get("/", function (req, res) {
   });
 });
 
+app.post("/", function (req, res) {
+  if (req.body.tipo == "nome") {
+    Usuario.find({ nome: new RegExp(req.body.pesquisa, "i") }).then(function (
+      docs
+    ) {
+      res.render("list.ejs", { Usuarios: docs });
+    });
+  } else {
+    Usuario.find({ email: new RegExp(req.body.pesquisa, "i") }).then(function (
+      docs
+    ) {
+      res.render("list.ejs", { Usuarios: docs });
+    });
+  }
+});
+
+app.get("/edt/:id", function (req, res) {
+  Usuario.findById(req.params.id).then(function (docs) {
+    console.log(docs);
+    res.render("edit.ejs", { Usuario: docs });
+  });
+});
+
+app.post("/edt/:id", function (req, res) {
+  Usuario.findByIdAndUpdate(
+    req.params.id,
+    {
+      nome: req.body.nome,
+      email: req.body.email,
+      senha: req.body.senha,
+      foto: req.body.foto,
+    },
+    function (err, docs) {
+      if (err) {
+        res.send("Aconteceu um erro:" + err);
+      } else {
+        res.redirect("/");
+      }
+    }
+  );
+});
+
 app.get("/del/:id", function (req, res) {
   Usuario.findByIdAndDelete(req.params.id, function (err, doc) {
     if (err) {
-      res.send("Aonteceu o seguinte erro: " + err);
+      res.send("Aconteceu o seguinte erro: " + err);
     } else {
       res.redirect("/");
     }

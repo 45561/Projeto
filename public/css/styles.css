@@ -1,0 +1,42 @@
+body{
+    margin: auto;
+    max-width: 1024px;
+}
+
+table, tr, td, th{
+    border: 1px solid black;
+}
+td, th{
+    text-align: center;
+    padding: 10px 20px;
+}
+
+a img{
+    width: 40px;
+}
+ h1{
+    text-align: center;
+ }
+ input{
+     padding: 10px 20px;
+     margin-top: 5px;
+     margin-bottom: 10px;
+     width: 100%;
+}
+input[type="submit"]{
+    width: 80px;
+}
+.pesquisa{
+    width: 60%;
+}
+.btn_pesquisa{
+    width: 10%;
+    padding: 10px;
+}
+
+select{
+    width: 10%;
+    padding: 10px 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
