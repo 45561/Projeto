@@ -26,7 +26,9 @@
             <td><%=usuario.nome%></td>
             <td><%=usuario.email%></td> 
             <td><%=usuario.senha%></td>
-            <td><%=usuario.foto%></td>
+            <td>
+                <img class="foto-user" src="/fotos/<%=usuario.foto%>">
+            </td>
             <td><a href="/edt/<%=usuario._id%>">
                 <img src="/imagens/lapis.png">
             </a></td>

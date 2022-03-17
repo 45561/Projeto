@@ -3,10 +3,9 @@ var app = express();
 var Usuario = require("./model/Usuario");
 var path = require("path"); //acessa as pastas do servidor dentro da pasta principal
 var upload = require("./config/multer");
+
 app.use(express.static(path.join(__dirname, "public")));
-
 app.set("view engine", "ejs");
-
 app.use(express.urlencoded({ extended: false })); //transforma os dados do post, em dados que o usuario possa visualizar.
 
 app.get("/add", function (req, res) {
@@ -61,14 +60,14 @@ app.get("/edt/:id", function (req, res) {
   });
 });
 
-app.post("/edt/:id", function (req, res) {
+app.post("/edt/:id", upload.single("foto"), function (req, res) {
   Usuario.findByIdAndUpdate(
     req.params.id,
     {
       nome: req.body.nome,
       email: req.body.email,
       senha: req.body.senha,
-      foto: req.body.foto,
+      foto: req.file.filename,
     },
     function (err, docs) {
       if (err) {
