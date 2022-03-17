@@ -2,7 +2,7 @@ var express = require("express");
 var app = express();
 var Usuario = require("./model/Usuario");
 var path = require("path"); //acessa as pastas do servidor dentro da pasta principal
-
+var upload = require("./config/multer");
 app.use(express.static(path.join(__dirname, "public")));
 
 app.set("view engine", "ejs");
@@ -13,12 +13,12 @@ app.get("/add", function (req, res) {
   res.render("index.ejs", {});
 });
 
-app.post("/add", function (req, res) {
+app.post("/add", upload.single("foto"), function (req, res) {
   var usuario = new Usuario({
     nome: req.body.nome,
     email: req.body.email,
     senha: req.body.senha,
-    foto: req.body.foto,
+    foto: req.file.filename,
   });
 
   usuario.save(function (err, docs) {
